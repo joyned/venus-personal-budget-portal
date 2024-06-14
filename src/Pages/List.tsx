@@ -35,6 +35,7 @@ export default function List() {
     }, [query, setLoading])
 
     const onFilter = (e: any) => {
+        setData(undefined);
         e.preventDefault();
         if (expenseType.value) {
             setLoading(true);
@@ -61,7 +62,7 @@ export default function List() {
                     <TableRow key={index}>
                         <TableCell>{d.item}</TableCell>
                         <TableCell>{transformToMoney(d.value)}</TableCell>
-                        <TableCell>{d.type}</TableCell>
+                        <TableCell>{d.type === 'C' ? 'Crédito' : 'Débito'}</TableCell>
                         <TableCell>
                             <Button label="Deletar" onClick={() => {
                                 setExpenseHistoryToDelete(d);
